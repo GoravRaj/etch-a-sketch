@@ -7,7 +7,28 @@
     <title>Etch-a-sketch</title>
 </head>
 <body>
+    <h1>Etch-a-Sketch</h1>
     
+    <div class="toolbar">
+        <div class="group">
+            <label>Size: <span id="size-text">16</span></label>
+            <input type="range" id="size-slider" min="1" max="100" value="16">
+            <button id="reset-btn">Reset</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="color-options">
+            <button class="color-btn active" data-color="white" style="background: white;"></button>
+            <button class="color-btn" data-color="red" style="background: #ff4d4d;"></button>
+            <button class="color-btn" data-color="cyan" style="background: #00f2ff;"></button>
+            <button class="color-btn" data-color="rainbow">🌈</button>
+            <button class="color-btn" data-color="eraser" id="eraser-btn">🧽</button>
+        </div>
+    </div>
+
+    <div id="grid-container"></div>
+
     <script src="./script.js"></script>
 </body>
 </html>
