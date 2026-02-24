@@ -71,18 +71,13 @@ h1 {
 #grid-container {
 	width: 550px;
 	height: 550px;
-	background-color: var(--toolbar-bg);
+	background-color: #000000; /* Set to black so low-opacity white is visible */
 	display: flex;
 	flex-wrap: wrap;
 	cursor: crosshair;
 	margin-top: 30px;
 	user-select: none; /* Prevents text highlighting while drawing */
 	touch-action: none; /* Prevents scrolling on mobile while drawing */
-}
-
-.square {
-    box-sizing: border-box;
-    border: 0.1px solid var(--square-border);
 }
 
 #reset-btn {
@@ -106,7 +101,5 @@ h1 {
 .square {
 	box-sizing: border-box;
 	border: 0.1px solid rgba(255, 255, 255, 0.02);
-	transition: background-color 0.1s, opacity 0.1s;
+	transition: opacity 0.1s ease-in-out;
 }
-
-

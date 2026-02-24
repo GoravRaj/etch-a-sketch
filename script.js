@@ -21,6 +21,7 @@ function createGrid(size) {
         div.classList.add("square");
         div.style.flex = `0 0 ${squareSize}%`;
         div.style.height = `${squareSize}%`;
+        div.style.backgroundColor = "#ffffff"; // Force base color for consistent darkening
         div.style.opacity = "0"; // Used for the 10% darkening effect
         fragment.appendChild(div);
     }
@@ -29,7 +30,7 @@ function createGrid(size) {
 
 
 function paint(square) {
-    let currentOpacity = parseFloat(square.style.opacity);
+    let currentOpacity = parseFloat(square.style.opacity) || 0;
 
     // If eraser is active, clear the square immediately
     if(colorMode === "eraser") {
@@ -38,20 +39,20 @@ function paint(square) {
         return;
     }
 
-     // DRAWING LOGIC: 10% Darkening
-     if (currentOpacity < 1) {
-        if (colorMode === "white") square.style.backgroundColor = "white";
-        if (colorMode === "red") square.style.backgroundColor = "#ff4d4d";
-        if (colorMode === "cyan") square.style.backgroundColor = "#00f2ff";
-        if (colorMode === "rainbow") {
-            square.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        }
+     // DRAWING LOGIC: 10% Darkening and Color Application
+     // update the color if it's different from the current one
+     if (colorMode === "white") square.style.backgroundColor = "#ffffff";
+     if (colorMode === "red") square.style.backgroundColor = "#ff4d4d";
+     if (colorMode === "cyan") square.style.backgroundColor = "#00f2ff";
+     if (colorMode === "rainbow") {
+         square.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+     }
 
+     // Increase opacity until it reaches 1 (solid)
+     if (currentOpacity < 1) {
         square.style.opacity = (currentOpacity + 0.1).toFixed(1);
     }
 }
-
-
 
 grid.addEventListener("mouseover", (e) => {
     if(isDrawing && e.target.classList.contains("square")) {
@@ -67,7 +68,8 @@ grid.addEventListener("mousedown", (e) => {
 
 colorButtons.forEach(btn => {
     btn.onclick = () => {
-        document.querySelector(".color-btn.active").classList.remove("active");
+        const activeBtn = document.querySelector(".color-btn.active");
+        if (activeBtn) activeBtn.classList.remove("active");
         btn.classList.add("active");
         colorMode = btn.dataset.color;
     };
