@@ -83,10 +83,15 @@ h1 {
 .square {
     box-sizing: border-box;
     border: 0.1px solid var(--square-border);
-    height: 50px;
-    width: 50px;
-    background-color: #00f2ff;
-    border: 1px solid #fff;
+}
+
+#reset-btn {
+	background: #c0392b;
+	color: white;
+	border: none;
+	padding: 6px 15px;
+	border-radius: 20px;
+	cursor: pointer;
 }
 
 #eraser-btn {

@@ -3,7 +3,12 @@ const slider = document.getElementById("size-slider");
 const sizeText = document.getElementById("size-text");
 const colorButtons = document.querySelectorAll(".color-btn");
 
+let isDrawing = false;
+let colorMode = "white";
 
+// Manage drawing state globally
+window.onmousedown = () => (isDrawing = true);
+window.onmouseup = () => (isDrawing = false);
 
 // Grid creation
 function createGrid(size) {
@@ -16,10 +21,48 @@ function createGrid(size) {
         div.classList.add("square");
         div.style.flex = `0 0 ${squareSize}%`;
         div.style.height = `${squareSize}%`;
-       
+        div.style.opacity = "0"; // Used for the 10% darkening effect
         fragment.appendChild(div);
     }
     grid.appendChild(fragment);
 }
+
+
+function paint(square) {
+    let currentOpacity = parseFloat(square.style.opacity);
+
+    // If eraser is active, clear the square immediately
+    if(colorMode === "eraser") {
+        square.style.backgroundColor = "transparent";
+        square.style.opacity = "0";
+        return;
+    }
+
+     // DRAWING LOGIC: 10% Darkening
+     if (currentOpacity < 1) {
+        if (colorMode === "white") square.style.backgroundColor = "white";
+        if (colorMode === "red") square.style.backgroundColor = "#ff4d4d";
+        if (colorMode === "cyan") square.style.backgroundColor = "#00f2ff";
+        if (colorMode === "rainbow") {
+            square.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+
+        square.style.opacity = (currentOpacity + 0.1).toFixed(1);
+    }
+}
+
+
+
+grid.addEventListener("mouseover", (e) => {
+    if(isDrawing && e.target.classList.contains("square")) {
+        paint(e.target); 
+    }
+});
+
+grid.addEventListener("mousedown", (e) => {
+    if(e.target.classList.contains("square")) {
+        paint(e.target);
+    }
+});
 
 createGrid(16);
