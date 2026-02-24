@@ -65,4 +65,24 @@ grid.addEventListener("mousedown", (e) => {
     }
 });
 
+colorButtons.forEach(btn => {
+    btn.onclick = () => {
+        document.querySelector(".color-btn.active").classList.remove("active");
+        btn.classList.add("active");
+        colorMode = btn.dataset.color;
+    };
+});
+
+slider.oninput = () => {
+    sizeText.innerText = slider.value;
+};
+
+slider.onchange = () => {
+    createGrid(slider.value);
+};
+
+document.getElementById("reset-btn").onclick = () => createGrid(slider.value);
+
+
+// Start with 16x16
 createGrid(16);

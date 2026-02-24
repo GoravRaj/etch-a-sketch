@@ -96,10 +96,17 @@ h1 {
 
 #eraser-btn {
     background: #2d2d37;
-    border: 1px solid #444;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
 }
+
+/* Give the squares a subtle transition so erasing feels smooth */
+.square {
+	box-sizing: border-box;
+	border: 0.1px solid rgba(255, 255, 255, 0.02);
+	transition: background-color 0.1s, opacity 0.1s;
+}
+
 
