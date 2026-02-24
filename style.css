@@ -1,42 +1,99 @@
 :root {
-    --main-bg: #0f0f11;
-    --toolbar-bg: #1a1a1d;
-    --accent: #00f2ff;
-    --color-white: #ccc;
+	--main-bg: #0f0f11;
+	--toolbar-bg: #1a1a1d;
+	--accent: #00f2ff;
+	--color-white: #ccc;
+	--reset-btn: #c0392b;
+	--border-color: #333333;
+	--square-border: rgba(255, 255, 255, 0.02);
 }
 
-
 body {
-    background-color: var(--main-bg);
-    color: var(--accent);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-    margin: 0;
+	background-color: var(--main-bg);
+	color: var(--accent);
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 40px;
+	margin: 0;
 }
 
 h1 {
-    font-weight: 200;
-    letter-spacing: 5px;
-    margin-bottom: 30px;
+	font-weight: 200;
+	letter-spacing: 5px;
+	margin-bottom: 30px;
 }
 
 .toolbar {
-    background: var(--toolbar-bg);
-    padding: 12px 30px;
-    border-radius: 50px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+	background: var(--toolbar-bg);
+	padding: 12px 30px;
+	border-radius: 50px;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	border: 1px solid var(--border-color);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .group {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--color-white);
+}
+
+.divider {
+	width: 1px;
+	height: 20px;
+	background: var(--border-color);
+}
+
+.color-options {
+	display: flex;
+	gap: 12px;
+}
+
+.color-btn {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	border: 2px solid transparent;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.color-btn.active {
+	border-color: var(--accent);
+	transform: scale(1.2);
+}
+
+#grid-container {
+	width: 550px;
+	height: 550px;
+	background-color: var(--toolbar-bg);
+	display: flex;
+	flex-wrap: wrap;
+	cursor: crosshair;
+	margin-top: 30px;
+	user-select: none; /* Prevents text highlighting while drawing */
+	touch-action: none; /* Prevents scrolling on mobile while drawing */
+}
+
+.square {
+    box-sizing: border-box;
+    border: 0.1px solid var(--square-border);
+    height: 50px;
+    width: 50px;
+    background-color: #00f2ff;
+}
+
+#eraser-btn {
+    background: #2d2d37;
+    border: 1px solid #444;
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: var(--color-white);
+    justify-content: center;
+    font-size: 14px;
 }
+
